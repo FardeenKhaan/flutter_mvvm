@@ -23,9 +23,11 @@ class Utils {
     showFlushbar(
       context: context,
       flushbar: Flushbar(
+        flushbarPosition: FlushbarPosition.TOP,
         forwardAnimationCurve: Curves.decelerate,
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         padding: EdgeInsets.all(15),
+        borderRadius: BorderRadius.circular(8),
         message: message,
         duration: Duration(seconds: 3),
         backgroundColor: Colors.red,

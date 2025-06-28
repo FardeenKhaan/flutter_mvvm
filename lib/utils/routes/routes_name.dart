@@ -10,7 +10,7 @@ class Routes {
       // case RoutesName.SPLASH:
       //   return MaterialPageRoute(builder: (_) => const SplashScreen());
       case RoutesName.login:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return MaterialPageRoute(builder: (_) => const LoginView());
       case RoutesName.home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       default:

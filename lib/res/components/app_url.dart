@@ -9,5 +9,5 @@ class AppUrl {
   static var LoginUrl = '$BaseUrl/api/login';
   static var RegisterUrl = '$BaseUrl/api/register';
 
-  static const String apiKey = 'reqres-free-v1'; // 🔑 Add your real API key
+  // static const String apiKey = 'reqres-free-v1'; // 🔑 Add your real API key
 }

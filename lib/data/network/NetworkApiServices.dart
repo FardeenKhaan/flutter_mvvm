@@ -5,6 +5,7 @@ import 'package:flutter_mvvm/data/app_exception.dart';
 import 'package:flutter_mvvm/data/network/BaseApiServices.dart';
 import 'package:flutter_mvvm/res/components/app_url.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart' show Response, post;
 
 class Networkapiservices extends Baseapiservices {
   @override
@@ -29,16 +30,37 @@ class Networkapiservices extends Baseapiservices {
     return responseJson;
   }
 
+  @override
+  Future postApiResponse(String url, dynamic data) async {
+    dynamic responseJson;
+    try {
+      Response response = await post(
+        Uri.parse(url),
+
+        body: data,
+      ).timeout(Duration(seconds: 10));
+      responseJson = returnResponse(response);
+    } on SocketException {
+      throw FetchDataException(
+        "Network Error: Please check your internet connection.",
+      );
+    }
+    return responseJson;
+  }
+
   // @override
   // Future postApiResponse(String url, dynamic data) async {
   //   dynamic responseJson;
   //   try {
-  //     final response = await http
+  //     Response response = await http
   //         .post(
   //           Uri.parse(url),
-
-  //           body: data,
-
+  //           body: jsonEncode(data),
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             "Authorization":
+  //                 "Bearer ${AppUrl.apiKey}", // ✅ Use API key from AppUrl
+  //           },
   //         )
   //         .timeout(Duration(seconds: 10));
   //     responseJson = returnResponse(response);
@@ -49,30 +71,6 @@ class Networkapiservices extends Baseapiservices {
   //   }
   //   return responseJson;
   // }
-
-  @override
-  Future postApiResponse(String url, dynamic data) async {
-    dynamic responseJson;
-    try {
-      final response = await http
-          .post(
-            Uri.parse(url),
-            body: jsonEncode(data),
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization":
-                  "Bearer ${AppUrl.apiKey}", // ✅ Use API key from AppUrl
-            },
-          )
-          .timeout(Duration(seconds: 10));
-      responseJson = returnResponse(response);
-    } on SocketException {
-      throw FetchDataException(
-        "Network Error: Please check your internet connection.",
-      );
-    }
-    return responseJson;
-  }
 
   @override
   Future putApiResponse(String url, data) {

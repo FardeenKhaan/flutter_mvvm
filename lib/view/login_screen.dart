@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:flutter_mvvm/res/components/rounded_button.dart';
 import 'package:flutter_mvvm/utils/routes/routes.dart';
 import 'package:flutter_mvvm/utils/utils.dart';
 import 'package:flutter_mvvm/view_model/auth_viewmodel.dart';
 import 'package:provider/provider.dart';
+=======
+import 'package:flutter_mvvm/utils/routes/routes.dart';
+import 'package:flutter_mvvm/utils/utils.dart';
+>>>>>>> 2ff743bcc153ab8b7e9ce6166422f23c998624e9
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -13,6 +18,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+<<<<<<< HEAD
   ValueNotifier<bool> _obscurePassword = ValueNotifier<bool>(true);
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -97,6 +103,22 @@ class _LoginViewState extends State<LoginView> {
               },
             ),
           ],
+=======
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: InkWell(
+          onTap: () {
+            Utils.flushBarErrorMessage("Login Button Clicked", context);
+            Utils.toastMessage("Login Button Clicked");
+            Navigator.pushNamed(context, RoutesName.home);
+          },
+          child: const Text(
+            "Login",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+>>>>>>> 2ff743bcc153ab8b7e9ce6166422f23c998624e9
         ),
       ),
     );

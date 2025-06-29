@@ -4,6 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Utils {
+  static void fieldfocusNode(
+    BuildContext context,
+    FocusNode currentFocus,
+    FocusNode nextFocus,
+  ) {
+    // if (currentFocus != nextFocus) {
+    currentFocus.unfocus();
+    FocusScope.of(context).requestFocus(nextFocus);
+    // }
+  }
+
   static toastMessage(String message) {
     // Implement your toast message logic here
     Fluttertoast.showToast(

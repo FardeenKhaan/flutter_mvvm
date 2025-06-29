@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter_mvvm/data/app_exception.dart';
 import 'package:flutter_mvvm/data/network/BaseApiServices.dart';
+import 'package:flutter_mvvm/res/components/app_url.dart';
 import 'package:http/http.dart' as http;
 
 class Networkapiservices extends Baseapiservices {
@@ -28,6 +29,27 @@ class Networkapiservices extends Baseapiservices {
     return responseJson;
   }
 
+  // @override
+  // Future postApiResponse(String url, dynamic data) async {
+  //   dynamic responseJson;
+  //   try {
+  //     final response = await http
+  //         .post(
+  //           Uri.parse(url),
+
+  //           body: data,
+
+  //         )
+  //         .timeout(Duration(seconds: 10));
+  //     responseJson = returnResponse(response);
+  //   } on SocketException {
+  //     throw FetchDataException(
+  //       "Network Error: Please check your internet connection.",
+  //     );
+  //   }
+  //   return responseJson;
+  // }
+
   @override
   Future postApiResponse(String url, dynamic data) async {
     dynamic responseJson;
@@ -35,11 +57,12 @@ class Networkapiservices extends Baseapiservices {
       final response = await http
           .post(
             Uri.parse(url),
-            // body: jsonEncode(data),
-            body: data,
-            // headers: {
-            //   "Content-Type": "application/json"
-            // }
+            body: jsonEncode(data),
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization":
+                  "Bearer ${AppUrl.apiKey}", // ✅ Use API key from AppUrl
+            },
           )
           .timeout(Duration(seconds: 10));
       responseJson = returnResponse(response);

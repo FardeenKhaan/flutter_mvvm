@@ -1,6 +1,6 @@
 # flutter_mvvm
 
-A new Flutter project.
+As i recently started an mvvm archtecture in flutter
 
 ## Getting Started
 
